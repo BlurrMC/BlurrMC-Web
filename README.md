@@ -17,6 +17,6 @@ This is the following things you need to run the application on the compute serv
 * `sidekiq -q carrierwave`
 * `redis-server`
 # Copyright
-Copyright© BlurrMC 2020
+Copyright© BlurrMC 2021
 
 Blurr it

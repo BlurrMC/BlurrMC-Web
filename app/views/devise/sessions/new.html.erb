@@ -22,6 +22,13 @@
       <%= f.submit "Log in", class: "submit-button" %>
     </div>
 
+    <%= flash[:recaptcha_error] %>
+    <% if @show_checkbox_recaptcha %>
+      <%= recaptcha_tags %>
+    <% else %>
+        <%= recaptcha_v3(action: 'login', site_key: ENV['RECAPTCHA_SITE_KEYV3']) %>
+    <% end %>
+
     <div>
       <a class="links" href="/users/sign_up">Sign up</a><br>
       <a class="links" href="/users/password/new">Reset Password</a><br>

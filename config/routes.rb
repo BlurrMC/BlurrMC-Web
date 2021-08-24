@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/kool', as: 'rails_admin'
-  devise_for :users , controllers: { sessions: 'sessions' }
+  devise_for :users , controllers: { sessions: 'sessions', registrations: 'registrations' }
   resource :two_factor_settings, except: [:index, :show]
   
   root to: 'home#index'

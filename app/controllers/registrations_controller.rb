@@ -3,6 +3,7 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
+  prepend_before_action :check_captcha, only: [:create]
 
   # GET /resource/sign_up
   # def new
@@ -59,4 +60,25 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
+
+  private
+
+  def check_captcha
+    success = verify_recaptcha(action: 'signup', minimum_score: 0.6, secret_key: ENV['RECAPTCHA_SECRET_KEYV3']) # verify_recaptcha(action: 'signup') for v3
+    checkbox_success = verify_recaptcha unless success
+    self.resource = resource_class.new sign_up_params
+    if success || checkbox_success
+      return
+    else
+      if !success
+        @show_checkbox_recaptcha = true
+      end
+      resource.validate # Look for any other validation errors besides reCAPTCHA
+      set_minimum_password_length
+      respond_with_navigational(resource) do
+        flash.discard(:recaptcha_error)
+        render :new
+      end
+    end
+  end
 end

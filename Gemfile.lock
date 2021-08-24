@@ -291,6 +291,7 @@ GEM
       thor (>= 0.14, < 2.0)
     jquery-ui-rails (6.0.1)
       railties (>= 3.2.16)
+    json (2.5.1)
     jsonapi-renderer (0.2.2)
     jwt (2.2.3)
     kaminari (1.2.1)
@@ -409,6 +410,8 @@ GEM
     rb-fsevent (0.11.0)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
+    recaptcha (5.8.1)
+      json
     redis (4.4.0)
     ref (2.0.0)
     regexp_parser (2.1.1)
@@ -562,6 +565,7 @@ DEPENDENCIES
   rack-cors
   rails (~> 6.1.0)
   rails_admin (~> 2.0.2)
+  recaptcha
   responders
   rpush
   rqrcode
