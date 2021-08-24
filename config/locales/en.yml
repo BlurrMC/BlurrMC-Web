@@ -36,3 +36,8 @@ en:
     attributes:
       user:  
         login: "username or email"
+en:
+  recaptcha:
+    errors:
+      verification_failed: 'reCAPTCHA was incorrect. Are you a bot????'
+      recaptcha_unreachable: 'reCAPTCHA verification server error. I dont even know man...'
