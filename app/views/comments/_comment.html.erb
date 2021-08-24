@@ -1,0 +1,107 @@
+<% if reply == true %>
+    <div class="reply" id="comment<%= comment.id %>">
+<% else %>
+    <div id="comment<%= comment.id %>">
+<% end %>
+      <% if !comment.user.blank? %>
+        <%= link_to c_path(id: comment.user.username), class: 'a-comment' do %>
+            <% @user = comment.user %>
+            <%= user_avatar_variant(@user, "rounded-comment-circle", resize: '50x50^', extent: '50x50', gravity: 'Center') %>
+            <strong><%= comment.user.username %></strong> 
+        <% end %><% comment.user.badges.each do |badge| %><%= image_tag(badge.image_url, alt: badge.name, class: 'comment-badge-image', title: badge.description) %><% end %>
+        <br>
+        <div class="comment-body show" id="<%= comment.id %>-sham">
+            <p id="commentbody<%= comment.id %>"><%= render 'partials/description', body: comment.body %>
+            <% if comment.edited == true %>
+                (edited)
+            <% end %>
+            </p>
+        </div>
+        <% if reply != true %>
+            <div class="commenteditfield" id="<%= comment.id %>-edit">
+                <%= render "comments/form", video: video, comment: comment, reply: false, edit: true %>
+            </div>
+        <% else %>
+            <div class="commenteditfield" id="<%= comment.id %>-edit">
+                <%= render "comments/form", video: video, comment: comment, parent: parent, reply: true, edit: true %>
+            </div>
+        <% end %>
+        <p>Commented <%= distance_of_time_in_words(comment.created_at, Time.now) %> ago</p>
+        <% if user_signed_in? %>
+            <div id="comment<%= comment.id %>likingbuttons">
+                <%= render "comments/like-button", comment: comment, video: video %>
+            </div>
+        <% end %>
+        <h4 id="comment<%= comment.id %>likes"><%= comment.commentlikes.count %> <%= (comment.commentlikes.count) == 1 ? 'Like' : 'Likes'%></h4>
+        <% if user_signed_in? %>
+            <h4>Leave a reply</h4>
+            <% if !video.user.blocking?(current_user)%>
+                <% if reply != true %>
+                    <%= render "comments/form", video: video, reply: true, edit: false, parent: comment.id, comment: comment %>
+                <% else %>
+                    <% if secondreply == true %>
+                        <% @parent = parent %>
+                    <% else %>
+                        <% @parent = parent.id %>
+                    <% end %>
+                        <%= render "comments/form", video: video, reply: true, edit: false, parent: @parent, comment: comment %>
+                <% end %>
+            <% end %>
+        <% end %>
+        <% if user_signed_in? %>
+            <% if !Report.exists?(reportable_id: comment, actor_id: current_user, reportable_type: "Comment") && comment.user != current_user  %>
+                <span class="commentdropbtn" onclick="comment<%= comment.id %>DropFunction()", id="dropdownbutton<%= comment.id %>">:</span>
+                <div id="<%= comment.id %>-dropdown" class="<%= comment.id %>-content commentdrop-content commentreport<%= comment.id %>">
+                    <%= button_to 'Report Comment', video_comment_reports_path(@video, comment), remote: true, method: :post, class: 'comment-report', onclick: "comment#{comment.id}DropFunction()" %>
+                </div>
+            <% elsif comment.user == current_user %>
+                <span class="commentdropbtn" onclick="comment<%= comment.id %>DropFunction()">:</span>
+                <div id="<%= comment.id %>-dropdown" class="<%= comment.id %>-content commentdrop-content">
+                    <span class="bal-edit" onclick="edit<%= comment.id %>Comment()">Edit</span>
+                    <%= button_to 'Destroy', [video, comment], method: :delete, remote: true, data: { confirm: 'Are you sure?' }, class: 'comment-report' %>
+                </div>
+            <% end %>
+        <% end %>
+                <% if reply != true %>
+                    <h3>Replies:</h3>
+                    <div id="reply<%= comment.id %>-container" class="reply-container">
+                        <table id="replies<%= comment.id %>">
+                            <% comment.replies.each do |reply| %>
+                                <%= render "comments/comment", video: video, reply: true, parent: comment, comment: reply, secondreply: false %>
+                            <% end %>
+                        </table>
+                    </div>
+                <% end %>
+        <br>
+        <br>
+    <% end %>
+</div>
+<script>
+function edit<%= comment.id %>Comment() {
+    event.stopPropagation();
+    const comment = document.getElementById("<%= comment.id %>-edit");
+    const body = document.getElementById("<%= comment.id %>-sham");
+    comment.classList.contains("show") ?comment.classList.remove("show") :comment.classList.add("show");
+    comment<%= comment.id %>DropFunction();
+    body.classList.contains("show") ?body.classList.remove("show") :body.classList.add("show");
+}
+
+function comment<%= comment.id %>DropFunction() {
+  event.stopPropagation();
+  const dropDown = document.getElementById("<%= comment.id %>-dropdown");
+  dropDown.classList.contains("show") ?dropDown.classList.remove("show") :dropDown.classList.add("show");
+}
+
+window.onclick = function(event) {
+  if (!event.target.matches('.commentdropbtn')) {
+    var dropdowns = document.getElementsByClassName("<%= comment.id %>-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
+</script>

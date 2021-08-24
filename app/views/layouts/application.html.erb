@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>BlurrMC</title>
+    <meta name="description" content="BlurrMC is the social media platform where you can meet your friends and share your original short clips with the world!" >
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= favicon_link_tag 'favicon2.ico' %>
+    <%= javascript_include_tag :jquery %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <% if notice %>
+    <% end %>
+    <% if alert %>
+      <p class="alert alert-danger"><%= alert %></p> 
+    <% end %>
+    <%= yield %>
+  </body>
+</html>

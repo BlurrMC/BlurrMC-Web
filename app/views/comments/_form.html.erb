@@ -1,0 +1,41 @@
+<% if edit == true %>
+<%= form_for([video, comment], remote: true) do |f| %> <%# Add error handling for the remote part, remote part: :remote => true,  %>
+    <p>
+        <% if reply == true %>
+            <%= f.hidden_field :parent_id, :value => parent %>
+        <% end %>
+            <%= f.hidden_field :id, :value => comment.id %>
+            <%= f.text_area :body, value: comment.body, id: "comment-bodyfield#{comment.id}" %>
+    </p>
+    
+    <p>
+            <%= f.submit 'Save', id: 'new-comment', onclick: "edit#{comment.id}Comment()" %>
+    </p>
+<% end %> 
+<% else %>
+<%= form_for([video, video.comments.build], remote: true) do |f| %>
+    <p>
+        <% if reply == true %>
+            <%= f.hidden_field :parent_id, :value => parent %>
+        <% end %>
+        <%= f.label :body, "Comment" %>
+        <% if reply == true %>
+            <%= f.text_area :body, id: "commentfield#{comment.id}" %>
+        <% else %>
+            <%= f.text_area :body %>
+        <% end %>
+    </p>
+    
+    <p>
+        <% if edit != true %>
+            <% if reply != true %>
+                <%= f.submit 'Comment', id: 'new-comment' %>
+            <% else %>
+                <%= f.submit 'Reply', id: 'new-comment' %>
+            <% end %>
+        <% else %>
+            <%= f.submit 'Save', id: 'new-comment' %>
+        <% end%>
+    </p>
+<% end %> 
+<% end %>

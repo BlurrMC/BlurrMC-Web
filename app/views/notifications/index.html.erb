@@ -1,0 +1,21 @@
+<%= render partial: "/partials/avatar-dropdown.html.erb" %>
+<%= link_to :back, class: 'notification-closebtn' do %><%= image_tag("close-icon4.png", class: 'notification-close-icon') %><% end %>
+<table class="notification-table">
+<% @notifications.each do |notification| %>
+    <br>
+    
+    <% if !current_user.blocking?(notification.actor)%>
+        <%= render partial: "notifications/#{notification.notifiable_type.underscore.pluralize}/#{notification.action}", locals: {notification: notification}, formats: [:html] %>
+    <% end %>
+    
+<% end %>
+</table>
+<script>
+document.addEventListener("DOMContentLoaded", function(){
+    const dropDown = document.getElementById("notification-dropdown");
+    const dropDown2 = document.getElementById("notification-dropdown2");
+    dropDown.classList.add("bg-ha");
+    dropDown2.classList.add("bg-ha");
+});
+</script>
+<%= render 'partials/footer' %>

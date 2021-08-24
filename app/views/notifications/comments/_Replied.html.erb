@@ -1,0 +1,12 @@
+<tr>
+<td class="notification-cell">
+<%= link_to c_path(id: notification.actor.username) do %>
+  <%= user_avatar_variant(notification.actor, "rounded-circle notification-avatar", resize: '150x150^', extent: '150x150', gravity: 'Center') %>  
+<% end %>
+<%= link_to c_path(id: notification.actor.username) do %>
+  @<%= notification.actor.username %>
+<% end %>
+<p>Replied to your comment, <%= notification.notifiable.body %></p>
+<%= link_to image_tag(notification.notifiable.commentable.clip.thumb.url, class: 'video-notification-thumbnail'), notification.notifiable.commentable, class: 'notification-a' %>
+</td>
+</tr>

@@ -1,0 +1,14 @@
+<body class="login-page">
+  <div class="box">
+  <h2>Two Factor Authentication</h2>
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name), method: :post) do |f| %>
+      <%= f.text_field :otp_attempt, class: 'box-input', placeholder: '2FA Code' %>
+      <div class="field">
+        <%= f.submit 'Login', class: 'submit-button' %>
+      </div>
+    <% end %>
+    <div>
+      <%= link_to "Back", :back, class:"links" %>
+    </div>
+  </div>
+</body>

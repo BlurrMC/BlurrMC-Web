@@ -1,0 +1,15 @@
+<% body.to_s.split(' ').each do |w| %>
+    <% if w.start_with?('#') %>
+      <%= link_to w, cs_path(search: w) %>
+    <% elsif w.start_with?('@') %>
+        <% user = w %>
+        <% user[0] = '' %>
+        <% if User.friendly.exists?(user) %>
+          <%= link_to "@#{w}", c_path(id: user) if User.friendly.exists?(user) %>
+        <% else %>
+          @<%= w %>
+        <% end %>
+    <% else %>
+      <%= w %>
+    <% end %>
+<% end %>

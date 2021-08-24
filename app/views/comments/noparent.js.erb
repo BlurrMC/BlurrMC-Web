@@ -1,0 +1,10 @@
+$('#comment_body').val("");
+$('table#comments-table').append("<%= j render "comments/comment", video: @commentable, comment: @comment, reply: false %>");
+var rowpos = $('#comment' + '<%= @comment.id %>').position();
+rowpos.top = rowpos.top - 30;
+$('.comment-container').animate({
+    scrollTop: rowpos.top
+});
+var oldcommentcount = parseInt($('#comments-count').text().split(' ')[0]);
+var commentcount = oldcommentcount + 1;
+$('#comments-count').html(commentcount + ' Comments');

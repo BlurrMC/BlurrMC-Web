@@ -1,0 +1,136 @@
+.c-avatar {
+  height: 150px;
+  width: 150px;
+  border-color: #fcfafa;
+  border-style: solid;
+  padding: 0px;
+  border-radius: 50%;
+  margin: 5px;
+  display: inline-block;
+}
+.logo {
+  height: auto;
+  width: 65px;
+  margin-top: 15.999px;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+.profile-divide {
+  margin-top: 20px;
+  box-shadow: 0px -1px` 5px 1px #b3b3b3;
+}
+.profile-divide1 {
+  margin-top: 20px;
+  box-shadow: 0px 1px 5px 1px #b3b3b3;
+}
+.profile-dividews {
+  margin-top: 20px;
+}
+.username, .follow-button, .follower-count, .follower, .following, .following-count, .name, .username1, .username2, .bio {
+  display: inline-block;
+}
+.follower-count, .username, .following-count, .following, .follower, .name, .username1, .username2, .bio {
+  position: relative;
+}
+.username {
+  vertical-align: top;
+  font-size: 24px;
+  top: -55px;
+  left: 205px;  /* For everything that has overflow: hidden we have to add
+width.  */
+  text-overflow: ellipsis;
+  width: 20%;
+}
+.username1 {
+  vertical-align: top;
+  font-size: 24px;
+  width: 20%;
+  text-overflow: ellipsis;
+  top: -55px;
+  left: 200px;
+}
+.username2 {
+  vertical-align: top;
+  font-size: 26px;
+  top: 0px;
+  left: -200px;
+}
+.bio {
+  vertical-align: top;
+  font-size: 16px;
+  top: -75px;
+  left: 205px;
+  width: 20%;
+}
+.name {
+  vertical-align: top;
+  font-size: 26px;
+  top: -115px;
+  left: 200px;
+}
+#logo:hover {
+  color: #fff;
+  background-color: #fff;
+}
+.follow-button {
+  border-radius: 32px;
+  font-size: 48px;
+  color: #4d364a;
+  background-color: #fffafe;
+  border-color: #ededed;
+  border-style: solid;
+  padding: 10px;
+  width: 20%;
+  text-align: center;
+  right: 10%;
+  top: 175.999px;
+  position: absolute;
+}
+.follower-count {
+  left: 285px;
+  margin: 5px;
+  padding: 5px;
+  color: #ffc4f3;
+  top: -45px;
+}
+.follower {
+  left: 360px;
+  top: -90px;
+  padding: 5px;
+  margin: 5px;
+}
+.following {
+  left: 525px;
+  top: -90px;
+  padding: 5px;
+  margin: 5px;
+}
+.following-count {
+  left: 450px;
+  margin: 5px;
+  padding: 5px;
+  color: #ffc4f3;
+  top: -45px;
+}
+.badge-image {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+}
+.comment-badge-image {
+  height: 25px;
+  width: 25px;
+  border-radius: 50%;
+}
+.video-badge-image {
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+}
+.video-thumbnail {
+  width: 243px;
+  height: 432px;
+  border-radius: 12%;
+}

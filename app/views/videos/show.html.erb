@@ -1,0 +1,111 @@
+<body class="blurr black-background">
+<div id="di" class="bg-sad">
+<% video = @video %>
+<table>
+    <span class="closebtn" onclick="muffinMan('video<%= video.id %>')"><%= image_tag("close-icon4.png", class: 'close-icon') %></span>
+    <td>
+    <div id="wrapper">
+        <div id="video-overlay"><%= image_tag("pause-icon-black.png", class: 'pause-icon') %></div>
+        <%= video_tag(video.clip, :size => "270x480", :autoplay => true, :loop => true, :controls => false, id: 'video') %>
+    </div>
+    <script>
+    var overlay = document.getElementById('video-overlay'),
+    video = document.getElementById('video'),
+    videoPlaying = false;
+
+    window.onbeforeunload = function(event) {
+      video.pause();
+    };
+
+    function hideOverlay() {
+        overlay.style.display = "none";
+        videoPlaying = true;
+        video.play();
+    }
+
+    function showOverlay() {
+        if (video.readyState === 4) {
+            overlay.style.display = "block";
+            videoPlaying = true;
+        }
+    }
+    video.addEventListener('pause', showOverlay);
+    video.addEventListener('play', hideOverlay);
+    overlay.addEventListener('click', hideOverlay)
+    </script>
+    <%= link_to c_path(id: video.user.username) do %>
+        <% @user = video.user %>
+        <%= user_avatar_variant(@user, "avatar-align", resize: '150x150^', extent: '150x150', gravity: 'Center') %>
+    <% end %> 
+    <script>
+    var v = document.getElementById('video');
+    v.addEventListener(
+        'play', 
+    function() { 
+        v.play();
+    }, 
+    false);
+
+    v.onclick = function() {
+        if (v.paused) {
+            v.play();
+        } else {
+            v.pause();
+        }
+    return false;
+    };
+    </script> 
+
+    @<%= video.user.username %><% video.user.badges.each do |badge| %><%= image_tag(badge.image_url, alt: badge.name, class: 'video-badge-image', title: badge.description) %><% end %>
+    </td>
+    <td>
+    <p><strong>Description:</strong></p>
+    <p><%= render 'partials/description', body: video.description %></p>
+    <% if user_signed_in? %>
+        <% if !video.user.blocking?(current_user)%>
+            <div id="videolikingbuttons">
+                <%= render "partials/videos/like-button", video: video %>
+            </div>
+        <% end %>
+    <% end %>
+    </td>
+    <td>
+        <h2>Stats</h2>
+        <h4 id="videolikecountheader"><%= video.likes.count %> <%= (video.likes.count) == 1 ? 'Like' : 'Likes'%></h4>
+        <h4>Published on: <%= video.created_at.strftime("%B #{video.created_at.day.ordinalize}, %Y") %></h4>
+        <h4><%= video.impressionist_count(:filter=>:ip_address) %> Views</h4>
+    </td>
+    <td>
+        <% if user_signed_in? %>
+            <% if !video.user.blocking?(current_user)%>
+                <h3>Post a Comment</h3>
+                <div id="comment-form">
+                    <%= render "comments/form", video: video, reply: false, edit: false %>
+                </div>
+            <% end %>
+        <% end %>
+    </td>
+    <td>
+        <h3 id="comments-count"><%= video.comments.count %> Comments</h3> <%# If changing this make sure to also update the javascript in create.js.erb %>
+        <div class="comment-container"> 
+            <table id="comments-table">
+                <td><% video.comments.is_parent.each do |comment| %>
+                    <%= render "comments/comment", video: video, comment: comment, reply: false %>
+                <% end %></td> 
+            </table>
+        </div>
+    </td>
+    <td>
+        <% if video.user == current_user %>
+            <%= link_to 'Edit', edit_video_path(video) %> 
+            <%= link_to 'Destroy', video, method: :delete, data: { confirm: 'Are you sure?' }, remote: true %>
+        <% end %>
+        <% if user_signed_in? && video.user != current_user %>
+            <% if !Report.exists?(reportable_id: video, actor_id: current_user, reportable_type: "Video") %>
+                <%= button_to 'Report Video', video_reports_path(video), method: :post %>
+            <% end %>
+        <% end %>
+    </td>
+</table>    
+</div>
+</body>

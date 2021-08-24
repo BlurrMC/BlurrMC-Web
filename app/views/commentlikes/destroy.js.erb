@@ -1,0 +1,5 @@
+$('#comment<%= @comment.id %>likingbuttons').empty();
+$('#comment<%= @comment.id %>likingbuttons').append("<%= j render "comments/like-button", comment: @comment, video: @commentable %>");
+$('#comment<%= @comment.id %>likes').empty();
+$('#comment<%= @comment.id %>likes').append("<%= @comment.commentlikes.count %> <%= (@comment.commentlikes.count) == 1 ? 'Like' : 'Likes'%>");
+ 

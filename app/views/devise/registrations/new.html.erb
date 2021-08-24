@@ -1,0 +1,35 @@
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <body class="login-page">
+  <div class="box">
+    <h1>Sign Up</h1>
+    <div class="field">
+      <%= f.text_field :username, autofocus: true, autocomplete: "username", required: true, placeholder: "Username", class: "box-input" %>
+    </div>
+
+    <div class="field">
+      <%= f.text_field :name, autofocus: true, autocomplete: "name", required: true, placeholder: "Name", class: "box-input" %>
+    </div>
+
+    <div class="field">
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", required: true, placeholder: "Email", class: "box-input" %>
+    </div>
+
+    <div class="field">
+      <%= f.password_field :password, autocomplete: "new-password", required: true, placeholder: "Password (6 Char Min)", class: "box-input" %>
+    </div>
+
+    <div class="field">
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", required: true, placeholder: "Confirm Password", class: "box-input" %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit "Sign up", class: "submit-button" %>
+    </div>
+
+    <div>
+      <center><a class="links" href="/users/sign_in">Login</a></center>
+    </div>
+  </div>
+  </body>
+<% end %>

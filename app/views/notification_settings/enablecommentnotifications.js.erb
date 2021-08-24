@@ -1,0 +1,2 @@
+$('#comment-buttons').empty();
+$('#comment-buttons').append('<%= j button_to 'Disable', disablecommentnotifications_path, method: :patch, remote: true, class: 'submit-button' %>');

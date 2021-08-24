@@ -1,0 +1,18 @@
+<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+  <body class="login-page">
+  <div class="box">
+    <h1>Reset</h1><h1> Password</h1> 
+    <div class="field">
+      <%= f.text_field :login, autofocus: true, autocomplete: "email or username", placeholder: "Username or Email", class: "box-input" %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit "Reset Password", class: "submit-button" %>
+    </div>
+
+    <div>
+      <center><a class="links" href="/users/sign_in">Login</a></center>
+      <center><a class="links" href="/users/sign_up">Sign up</a></center>
+    </div>
+  </body>
+<% end %>

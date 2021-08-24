@@ -1,0 +1,15 @@
+$('#commentfield<%= @comment.parent_id %>').val("");
+$('table#replies<%= @comment.parent_id %>').append("<%= j render "comments/comment", video: @commentable, comment: @comment, parent: @comment.parent_id, reply: true, secondreply: true %>");
+var rowpos = $('#reply<%= @comment.parent_id %>-container').position(); // Go to the reply container first, and then find the specific reply inside that container
+rowpos.top = rowpos.top - 30;
+$('.comment-container').animate({
+    scrollTop: rowpos.top
+});
+var rowpos = $('#comment' + '<%= @comment.id %>').position();
+rowpos.top = rowpos.top - 30;
+$('#reply<%= @comment.parent_id %>-container').animate({
+    scrollTop: rowpos.top
+});
+var oldcommentcount = parseInt($('#comments-count').text().split(' ')[0]);
+var commentcount = oldcommentcount + 1;
+$('#comments-count').html(commentcount + ' Comments');

@@ -1,0 +1,31 @@
+
+
+<%= form_with(model: video, local: true) do |form| %>
+  <% if video.errors.any? %>
+    <div id="error_explanation">
+      <center><h2><%= pluralize(video.errors.count, "error") %> prohibited this video from being saved:</h2></center>
+
+      <ul>
+        <% video.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="box">
+  <div class="field">
+    <h1>New Video</h1>
+    <center><%= form.file_field :clip %></center>
+    <%= form.hidden_field :clip_cache %>
+  </div>
+
+  <div class="field">
+    <%= form.text_area :description, required: false, placeholder: "Description", class: "box-input", :maxlength => 50 %>
+  </div>
+  
+  <div class="actions">
+    <center><%= form.submit %></center>
+    <%= link_to 'Back', :back %>
+  </div>
+</div>
+<% end %>

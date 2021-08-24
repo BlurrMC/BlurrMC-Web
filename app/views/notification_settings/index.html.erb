@@ -1,0 +1,47 @@
+<body class="login-page">
+  <div class="box">
+    <h1>Notification</h1> 
+    <h1>Settings</h1>
+    <h4>Follow Notifications</h4>
+    <div id="follow-buttons">
+    <% if current_user.follownotifications == true %>
+        <%= button_to 'Disable', disablefollownotifications_path, method: :patch, remote: true, class: 'submit-button' %>
+    <% else %>
+        <%= button_to 'Enable', enablefollownotifications_path, method: :patch, remote: true, class: 'submit-button' %>
+    <% end %>
+    </div>
+    <h4>Comment Notifications</h4>
+    <div id="comment-buttons">
+    <% if current_user.commentnotifications == true %>
+        <%= button_to 'Disable', disablecommentnotifications_path, method: :patch, remote: true, class: 'submit-button' %>
+    <% else %>
+        <%= button_to 'Enable', enablecommentnotifications_path, method: :patch, remote: true, class: 'submit-button' %>
+    <% end %>
+    </div>
+    <h4>Liked Comment Notifications</h4>
+    <div id="comment-like-buttons">
+    <% if current_user.likecommentnotification == true %>
+        <%= button_to 'Disable', disablelikecommentnotifications_path, method: :patch, remote: true, class: 'submit-button' %>
+    <% else %>
+        <%= button_to 'Enable', enablelikecommentnotifications_path, method: :patch, remote: true, class: 'submit-button' %>
+    <% end %>
+    </div>
+    <h4>Reply Notifications</h4>
+    <div id="reply-buttons">
+    <% if current_user.replynotifications == true %>
+        <%= button_to 'Disable', disablereplynotifications_path, method: :patch, remote: true, class: 'submit-button' %>
+    <% else %>
+        <%= button_to 'Enable', enablereplynotifications_path, method: :patch, remote: true, class: 'submit-button' %>
+    <% end %>
+    </div>
+    <h4>Liked Video Notification</h4>
+    <div id="liked-video-buttons">
+    <% if current_user.likedvideonotifications == true %>
+        <%= button_to 'Disable', disablelikedvideonotifications_path, method: :patch, remote: true, class: 'submit-button' %>
+    <% else %>
+        <%= button_to 'Enable', enablelikedvideonotifications_path, method: :patch, remote: true, class: 'submit-button' %>
+    <% end %>
+    </div>
+    <%= link_to 'Back', :back, class: 'notification-settings-closebtn submit-button-1' %>
+  </div>
+</body>

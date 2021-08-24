@@ -1,0 +1,9 @@
+
+<tr>
+<td class="follower-cell">
+<%= link_to c_path(id: user.username), class: 'follower-a' do %>
+    <%= user_avatar_variant(user, "left-follower-avatar", resize: '50x50^', extent: '50x50', gravity: 'Center') %>
+<strong><%= user.name %></strong><% user.badges.each do |badge| %><%= image_tag(badge.image_url, alt: badge.name, class: 'video-badge-image', title: badge.description) %><% end %>
+<% end %>
+</td>
+</tr>

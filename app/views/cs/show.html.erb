@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="Blurred" >
+<title>Channel Page</title>
+<%= stylesheet_link_tag "styles.css" %>
+<%= stylesheet_link_tag "styles1.css" %>
+</head>
+<body>
+<div id="the-all-and-everything">
+<%= render partial: "/partials/avatar-dropdown.html.erb" %>
+<hr class="profile-divide">
+<div>
+  <%= user_avatar_variant(@user, "rounded-circle c-avatar", resize: '150x150^', extent: '150x150', gravity: 'Center') %>
+</div>
+<h2 class="name"><%= @user.name %></h2><% @user.badges.each do |badge| %><%= image_tag(badge.image_url, alt: badge.name, class: 'badge-image', title: badge.description) %><% end %> <%# Badge.create(name: 'Verified', description: 'User has been verified', image_url: 'fallback/default-avatar-3.png', user_id: 1) %>
+<h2 class="follower">Followers</h2>
+<h2 class="follower-count"><%= @user.followers.count %></h2>
+<h2 class="following">Following</h2>
+<h2 class="following-count"><%= @user.following.count %></h2>
+<div>
+  <% if user_signed_in? %>
+    <% if current_user.id != @user.id %>
+      <h2 class="username">@<%= @user.username %></h2>
+    <% else %>
+      <h2 class="username1">@<%= @user.username %></h2>
+    <% end %>
+  <% else %>
+    <h2 class="username">@<%= @user.username %></h2>
+  <% end %>
+</div>
+<h3 class="bio"><%= render 'partials/description', body: @user.bio %></h3>
+<div id="fooollow-button">
+  <%= render partial: "/partials/follow-button.html.erb" %>
+</div>
+<%= render partial: "/partials/block-button.html.erb" %>
+<% if user_signed_in? %>
+  <% if !Report.exists?(reportable_id: @user, actor_id: current_user, reportable_type: "User") && @user != current_user %>
+    <%= button_to 'Report User', c_reports_path(@user), method: :post, class: "round-button" %>
+  <% end %>
+<% end %>
+<hr class="profile-divide1">
+<div id="di" class="bg-ha">
+</div>
+<div class="channel-videos">
+<% if user_signed_in? %>
+  <% if !@user.blocking?(current_user)%>
+    <% @videos.each do |video| %>
+      <tr>
+        <td>
+          <%= render "partials/videos/video", video: video %>
+        </td>
+      </tr>
+    <% end %>
+  <% else %>
+    <h2>This user has blocked you</h2>
+  <% end %>
+<% else %>
+  <% @videos.each do |video| %>
+    <tr>
+      <td>
+        <%= render "partials/videos/video", video: video %>    
+      </td>
+    </tr>
+  <% end %>
+<% end %>
+</div>
+<%= render "partials/videos/overlay-js", search: nil %>
+<br>
+<br>
+<%= render 'partials/footer' %>
+</div>
+</body>
+</html>

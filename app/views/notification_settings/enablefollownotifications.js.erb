@@ -1,0 +1,2 @@
+$('#follow-buttons').empty();
+$('#follow-buttons').append('<%= j button_to 'Disable', disablefollownotifications_path, method: :patch, remote: true, class: 'submit-button' %>');

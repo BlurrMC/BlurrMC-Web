@@ -1,0 +1,1 @@
+rails s -e production -b 10.0.0.2 # Replace with host ip

@@ -1,0 +1,3 @@
+json.qrcodeuri current_user.two_factor_qr_code_uri
+json.otpsecret current_user.otp_secret
+json.backupcodes @backup_codes

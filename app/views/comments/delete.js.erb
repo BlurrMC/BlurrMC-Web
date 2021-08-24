@@ -1,0 +1,4 @@
+$('#comment<%= @comment.id %>').remove();
+var oldcommentcount = parseInt($('#comments-count').text().split(' ')[0]);
+var commentcount = oldcommentcount - 1;
+$('#comments-count').html(commentcount + ' Comments');

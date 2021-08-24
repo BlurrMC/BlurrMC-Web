@@ -1,0 +1,19 @@
+<%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
+  <body class="login-page">
+  <div class="box">
+    <h1>Resend</h1><h1>Confirmation</h1>
+    <h3>Need to resend confirmation?</h3>
+    <div class="field">
+      <%= f.email_field :email, autofocus: true, placeholder: "email", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email), class: "box-input" %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit "Resend confirmation", class: "submit-button" %>
+    </div>
+
+    <div>
+      <center><a class="links" href="/users/sign_in">Login</a></center>
+    </div>
+  </div>
+  </body>
+<% end %>

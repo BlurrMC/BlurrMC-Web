@@ -1,0 +1,11 @@
+<tr>
+<td class="notification-cell">
+<%= link_to c_path(id: notification.actor.username), class: 'notification-a' do %>
+  <%= user_avatar_variant(notification.actor, "rounded-circle notification-avatar", resize: '150x150^', extent: '150x150', gravity: 'Center') %>
+<% end %>
+<%= link_to c_path(id: notification.actor.username), class: 'haam' do %>
+  @<%= notification.actor.username %>
+<% end %>
+<p> <%= notification.action %> you.</p> 
+</td>
+</tr>

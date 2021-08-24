@@ -1,0 +1,92 @@
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+
+  <body class="login-page">
+
+  <div class="box2">
+
+    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+      <div><center>Currently waiting confirmation for: <%= resource.unconfirmed_email %></center></div>
+    <% end %>
+
+
+    <h1>My account</h1>
+
+    <div class="field">
+      <div class="row">
+        <div>
+          <%= user_avatar_variant(resource, "rounded-avatar", resize: '150x150^', extent: '150x150', gravity: 'Center') %>
+        </div>
+      </div>
+    </div>
+
+    <div class="field">
+      <center><%#= f.file_field :avatar, class: 'form-control input-md', required: false, label: "Change Avata" %></center>
+    </div>
+
+    <div class="field">
+      <center><%= f.text_field :username, autofocus: true, autocomplete: "username", placeholder: "Username", class: "box-input" %></center>
+    </div>
+
+    <div class="field">
+      <center><%= f.text_field :name, autofocus: true, autocomplete: "name", placeholder: "Name", class: "box-input" %></center>
+    </div>
+
+    <div class="field">
+      <center><%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Email", class: "box-input" %></center>
+    </div>
+
+    <div class="field">
+      <center><%= f.text_field :bio, autofocus: true, required: false,autocomplete: "bio", placeholder: "Bio", class: "box-input", :maxlength => 50 %></center>
+    </div>
+
+    <div class="field">
+      <center><%= f.password_field :current_password, autocomplete: "current-password", placeholder: "Current Password", class: "box-input" %></center>
+    </div>
+    <center><span onclick="passwordDropdown()" class="links">Change Password</span></center>
+    <div>
+      <div id="password-dropdown">
+        <div class="field">
+          <center><%= f.password_field :password, autocomplete: "new-password", placeholder: "New Password ", class: "box-input" %></center>
+        </div>
+        <div class="field">
+          <center><%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "Confirm Password", class: "box-input" %></ce$
+        </div>
+      </div>
+    </div>
+
+    <div class="actions">
+      <center><%= f.submit "Update", class: "submit-button" %></center>
+    </div>
+
+    <div>
+      <%= link_to "Back", :back, class:"links" %>
+    </div>
+  <script>
+  function passwordDropdown() {
+    var x = document.getElementById("password-dropdown");
+    if (x.style.display === "block") {
+      x.style.display = "none";
+    } else {
+      x.style.display = "block";
+    }
+  }
+  </script>
+  </div>
+  </body>
+  </div>
+  <div class="box3">
+
+    <h3>Delete Account</h3>
+
+    <button type="button"><%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></button>
+    <% if current_user.otp_required_for_login %>
+      <%= link_to "2 Factor Auth", edit_two_factor_settings_path, class: 'submit-button', data: { confirm: "This data is personal. Make sure no one else can see these codes." } %>
+    <% else %>
+      <%= link_to "Enable 2 Factor Auth", edit_two_factor_settings_path, class: 'submit-button', data: { confirm: "This data is personal. Make sure no one else can see these codes." } %>
+    <% end %>
+    <%= link_to "Notification Settings", notification_settings_path, class: 'submit-button' %>
+  </div>
+<% end %>
+
+

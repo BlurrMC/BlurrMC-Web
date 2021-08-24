@@ -1,0 +1,11 @@
+
+  <% if user_signed_in? %>
+    <% if current_user.id != @user.id %>
+      <% if !current_user.following?(@user) %>
+        <%= button_to 'Follow', {:controller => :relationships, :action => 'create', :user => @user}, method: :post, remote: true, class: "round-button follow-button" %>
+      <% else %>
+        <%= button_to 'Unfollow', {:controller => :removerelationships, :action => 'create', :user => @user}, method: :post, remote: true, class: "round-button follow-button" %>
+      <% end %>
+    <% end %>
+  <% end %>
+

@@ -1,0 +1,4 @@
+$('#videolikingbuttons').empty();
+$('#videolikingbuttons').append("<%= j render "partials/videos/like-button", video: @video %>");
+$('#videolikecountheader').empty();
+$('#videolikecountheader').append("<%= @video.likes.count %> <%= (@video.likes.count) == 1 ? 'Like' : 'Likes'%>");

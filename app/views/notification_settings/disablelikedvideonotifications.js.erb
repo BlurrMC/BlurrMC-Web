@@ -1,0 +1,2 @@
+$('#liked-video-buttons').empty();
+$('#liked-video-buttons').append('<%= j button_to 'Enable', enablelikedvideonotifications_path, method: :patch, remote: true, class: 'submit-button' %>');

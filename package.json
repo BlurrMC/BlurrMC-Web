@@ -1,0 +1,40 @@
+{
+  "name": "blurred",
+  "private": true,
+  "dependencies": {
+    "@rails/actioncable": "^6.0.0",
+    "@rails/activestorage": "^6.0.0",
+    "@rails/ujs": "^6.0.0",
+    "@rails/webpacker": "^5.4.0",
+    "dropzone": "^5.7.1",
+    "jquery": "^3.5.1",
+    "jquery-ujs": "^1.2.2",
+    "popper.js": "^1.16.1",
+    "rails-ujs": "^5.2.4-3",
+    "resolve-url-loader": "^3.1.1",
+    "sass": "^1.26.10",
+    "spin.js": "^4.1.0",
+    "tree": "^0.1.3",
+    "turbolinks": "^5.2.0",
+    "uuid": "^8.3.2"
+  },
+  "version": "0.1.0",
+  "devDependencies": {
+    "webpack-dev-server": "^3.10.1"
+  },
+  "description": "This also only includes the main rails server and nothing else as nothing else needs to be added. # Requirements This is the following things you need to run the application on the compute server: *  FFMPEG *  FFMPEGThumbnailer *  Ruby *  Nodejs *  Yarn *  clamav *  clamav-daemon *  OpenJDK 8 *  Elastic Search *  Rpush Dameon (included with Rpush gem) # Copyright Copyright© BlurrMC 2020",
+  "main": "babel.config.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://10.0.0.69/blurrmc/Blurred.git"
+  },
+  "author": "",
+  "license": "ISC"
+}

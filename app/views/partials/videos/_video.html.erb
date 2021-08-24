@@ -1,0 +1,2 @@
+<div id="damn"><%= link_to image_tag(video.clip.thumb.url, class: 'video-thumbnail'), video_path(video), class: "show", remote: true, onclick: "muffinMan('video#{video.id}')", id: "videothumbnail#{video.id}" %></div>
+<%# add div for video overlay in the controller that displays this%>

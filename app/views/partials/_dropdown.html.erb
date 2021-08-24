@@ -1,0 +1,44 @@
+<% if user_signed_in? %>
+  <li class="dropdown1" id="notification-dropdown" data-behavior="notifications" data-notifications='<%= render template: "notifications/index", formats: [:json] %>'>
+    <a class="dropbtn" type="button" data-behavior="notifications-link" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">        
+      
+    </a>
+    <div class="dropdown-content" aria-labelledby="dropdownMenu1" data-behavior="notification-items">
+    </div>
+  </li>
+<% end %>
+<div class="avatarDropdown">
+  <% if user_signed_in? %>
+  <div>
+    <span class="dropbtn" onclick="myFunction()"><%= user_avatar_variant(current_user, "avatar-align", resize: '150x150^', extent: '150x150', gravity: 'Center') %></span>
+  </div>
+  <% else %>
+    <span onclick="myFunction()" class="dropbtn"><%= image_tag("fallback/default-avatar-3.png", class:"avatar-align") %></span>
+  <% end %>
+  <div id="myDropdown" class="dropdown-content">
+  <% if user_signed_in? %>
+    <%= link_to "My Channel", c_path(id: current_user.username) %>
+    <%= link_to('My Account', edit_user_registration_path) %>
+    <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+    <%= link_to 'Upload', new_video_path %>
+    <% if current_user.admin? %>
+        <%= link_to "Kool Kid Corner", '/kool/' %>
+    <% end %>
+  <% else %>
+    <%= link_to('Login', new_user_session_path) %>
+    <%= link_to('Sign up', new_user_registration_path) %>
+  <% end %>
+  </div>
+</div>
+<div class="dropdown1" id="notification-dropdown2">
+  <% if user_signed_in? %>
+  <div>
+    <%= link_to notifications_path do %>
+      <%= image_tag("bell-temp.png", class: "notify-bell-size") %> 
+    <% end %>
+  </div>
+  <div id="myDropdown1" class="dropdown-content1">
+    
+  </div>
+  <% end %>
+</div>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<style>
+.logopic {
+  height: 40px;
+  width: 55px;
+}
+.moreinfo {
+  color: #d4d4d4;
+  font-size: 13px;
+}
+.moreinfo a{
+  color: #d4d4d4;
+}
+.divide {
+  width: 250px;
+}
+body {
+  background-color: #dbdbdb;
+}
+</style>
+</head>
+<body>
+
+<center><img src="https://www.blurrmc.com/images/Blurr_Logo.png" alt="Blurr Logo" class="logopic">
+<h3>Hello<%= @email %></h3>
+<div>
+  <% if @resource.try(:unconfirmed_email?) %>
+    <h4>We're here to notify you that your email is being changed to <%= @resource.unconfirmed_email %>.</h4>
+  <% else %>
+    <h4>We're here to notify you that your email has been changed to <%= @resource.email %>.</h4>
+  <% end %>
+</div>
+<hr class="divide">
+<p class="moreinfo">You are receiving this email because you signed up with <a href="https://www.blurrmc.com">BlurrMC</a></p>
+<p class="moreinfo">This email was sent to <%= @email %></p>
+<p class="moreinfo">Didn't change your email? Contact us at <a href="contact@blurrmc.com">contact@blurrmc.com</a></p>
+<p class="moreinfo">© <%= Date.today.year %> <strong>Martin Velev</strong></p>/center>
+</body>
+</html>

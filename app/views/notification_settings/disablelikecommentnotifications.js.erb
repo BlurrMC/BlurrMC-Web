@@ -1,0 +1,2 @@
+$('#comment-like-buttons').empty();
+$('#comment-like-buttons').append('<%= j button_to 'Enable', enablelikecommentnotifications_path, method: :patch, remote: true, class: 'submit-button' %>');

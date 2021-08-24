@@ -1,0 +1,5 @@
+json.follow current_user.follownotifications
+json.comment current_user.commentnotifications
+json.likedcomment current_user.likecommentnotification
+json.reply current_user.replynotifications
+json.likedvideo current_user.likedvideonotifications

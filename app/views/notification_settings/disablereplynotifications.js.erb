@@ -1,0 +1,2 @@
+$('#reply-buttons').empty();
+$('#reply-buttons').append('<%= j button_to 'Enable', enablereplynotifications_path, method: :patch, remote: true, class: 'submit-button' %>');

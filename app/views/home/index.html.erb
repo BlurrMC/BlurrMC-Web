@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="Blurred" content="Blurred"</meta>
+<title>Blurred Home</title>
+<%= javascript_include_tag "typeahead.bundle" %>
+</head>
+<body>
+<!--This is made by MartinIAm-->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<div class="hero-image" id="the-all-and-everything">
+  <%= render partial: "/partials/avatar-dropdown-no-logo" %>
+  <div class="hero-text">
+    <%= image_tag("Blurr_Logo1.png", :alt => "BlurrMC Logo") %>
+    <div class="center">
+      <div class="search-container">
+        <%= form_tag(cs_path, method: :get, role: 'search') do %>
+          <%= text_field_tag :search, params[:search], placeholder: 'Search', class: 'center search', id: 'query user_search videos_search search', autocomplete: :off %>
+          <%= submit_tag 'Search', name: nil, style: 'display: none;' %>
+        <% end %>
+    </div>
+  </div>
+</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div id="di" class="bg-ha">
+  <div id="spinner"></div>
+</div>
+<% if user_signed_in? %>
+  <div class="follower-bar">
+    <h1 style="text-align: center;">Following</h1>
+    <table class="follower-table" >
+      <% current_user.following.each do |channel| %>
+        <%= render "partials/follower-bar", user: channel %>
+      <% end %>
+    </table>
+  </div>
+<% end %>
+<div class="home-videos">
+<% if user_signed_in? %>
+  <h1>Home Feed</h1>
+  <% @videos.each do |video| %>
+    <% if !video.user.blocking?(current_user)%>
+      <tr>
+        <td><%= render "partials/videos/video", video: video %></td>
+      </tr>
+    <% elsif !current_user.blocking?(video.user) %>
+      <tr>
+        <td><%= render "partials/videos/video", video: video %></td>
+      </tr>
+    <% end %>
+  <% end %>
+<% end %>
+<%# 3 nights at the motel (is playing right now) %>
+<h1>Random</h1>
+<% @randomvideos.each do |v| %>
+  <tr>
+    <td><%= render "partials/videos/video", video: v %></td>
+  </tr>
+<% end %>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<h2 style="color: #3d3d3d;">About BlurrMC</h2>
+<p style="color: #878787;">Meet your friends and share your original short clips with the world!</p>
+</div>
+<%= render "partials/videos/overlay-js", search: true %>      
+</body>
+<%= render 'partials/footer' %>
+</html>

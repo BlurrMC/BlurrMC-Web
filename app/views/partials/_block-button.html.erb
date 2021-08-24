@@ -1,0 +1,16 @@
+<div>
+  <% if user_signed_in? %>
+    <% if current_user.id != @user.id %>
+      <% if !current_user.blocking?(@user) %>
+        <%= form_for(current_user.active_blocks.build) do |f| %>
+          <div><%= hidden_field_tag :blocked_id, @user.id %></div>
+          <%= f.submit "Block", class: "round-button" %>
+        <% end %>
+      <% else %>
+        <%= form_for(current_user.active_blocks.find_by(blocked_id: @user.id), html: { method: :delete }) do |f| %>
+          <%= f.submit "Unblock", class: "round-button" %>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>
