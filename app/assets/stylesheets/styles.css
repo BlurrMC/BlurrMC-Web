@@ -354,3 +354,13 @@ span.twitter-typeahead .tt-suggestion {
   margin-left: 15%;
   margin-right: 15%;
 }
+
+.like-icon {
+  height: 48px;
+  width: 48px;
+}
+
+.comment-like-icon {
+  height: 24px;
+  width: 24px;
+}
