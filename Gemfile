@@ -5,7 +5,6 @@ git_source(:gitlab) { |repo| "https://10.0.0.69/#{repo}.git"}
 ruby '3.0.0'
 
 # Custom Gem Start
-gem 'recaptcha'
 gem 'rack-attack'
 gem 'dotenv-rails', :groups => [:development, :test]
 gem 'rqrcode'
