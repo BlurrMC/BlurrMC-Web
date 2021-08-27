@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Users::PasswordsController < Devise::PasswordsController
+class PasswordsController < Devise::PasswordsController
   # GET /resource/password/new
   prepend_before_action :check_captcha, only: [:create]
   # def new
