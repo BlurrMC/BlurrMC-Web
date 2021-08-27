@@ -58,6 +58,7 @@ Rails.application.configure do
   config.hosts << "www.blurrmc.com"
   config.hosts << "10.0.0.2"
   config.hosts << "10.0.0.12"
+  config.hosts << "blurrmc.com"
   config.assets.compile = true
 
   # Use a different cache store in production.
