@@ -1,6 +1,6 @@
 class Video < ApplicationRecord
     mount_uploader :clip, ::ClipUploader, mount_on: :clip
-    process_in_background :clip
+    #process_in_background :clip
     
     searchkick 
     is_impressionable :unique => [:session_hash, :ip_address]

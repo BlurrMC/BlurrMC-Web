@@ -19,7 +19,7 @@ module Devise
       def get_payload
         JWT.decode(
           get_token,
-          Rails.application.secrets.secret_key_base,
+          ENV['SECRET_KEY'],
           true,
           { algorithm: 'HS256' }
         ).first

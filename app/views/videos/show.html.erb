@@ -3,7 +3,7 @@
 <div id="di" class="bg-sad">
 <% video = @video %>
 <table>
-    <span class="closebtn" onclick="muffinMan('video<%= video.id %>')"><%= image_tag("close-icon4.png", class: 'close-icon') %></span>
+    <span class="closebtn" onclick="javascript:history.back()"><%= image_tag("close-icon4.png", class: 'close-icon') %></span>
     <td>
     <div id="wrapper">
         <div id="video-overlay"><%= image_tag("pause-icon-black.png", class: 'pause-icon') %></div>

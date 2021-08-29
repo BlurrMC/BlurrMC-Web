@@ -2,11 +2,14 @@
 <body>
 <div id="the-all-and-everything">
 <%= render partial: "/partials/avatar-dropdown.html.erb" %>
+<br>
 <div class="cs-search-container">
   <%= form_tag(cs_path, method: :get, role: 'search', id: 'cs-search-form') do %>
     <%= text_field_tag :search, params[:search], placeholder: 'Search', style: 'top: 25px;', class: 'center search', id: 'query user_search videos_search search', autocomplete: :off %>
     <%= submit_tag 'Search', name: nil, style: 'display: none;' %>
   <% end %>
+</div>
+<div id="di" class="bg-ha">
 </div>
 <div id="results">
 <table class="channel-table">
@@ -37,9 +40,7 @@
 <% end %>
   <% @videos.each do |video| %>
     <div id="damn" class="video-grid-item">
-      <%= link_to video_path(video), class: "show channel-a", remote: true, onclick: "muffinMan(#{video.id})", id: "videothumbnail#{video.id}" do %>
-      <%= image_tag(video.clip.thumb.url, class: 'video-thumbnail') %>
-      <% end %>
+      <%= render "partials/videos/video", video: video %>
     </div>
   <% end %>
 </div>
@@ -47,8 +48,7 @@
 <div id="infinite-scrolling">
   <%= will_paginate @videos %>
 </div>
-<%= render "partials/videos/overlay-js", search: true %>
 </div>
-<div id="di" class="bg-ha">
-</div>
+
+<%= render 'partials/videos/overlay-js', search: true %>
 <%= render 'partials/footer' %>

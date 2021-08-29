@@ -26,7 +26,7 @@ if pre_like
     json.likeId comment.commentlikes.find_by(user_id: current_user.id).id
 else
     json.liked false
-    json.likeId 0
+    json.likeId "0"
 end
 if reply != true
     if comment.replies.any?

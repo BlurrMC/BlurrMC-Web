@@ -100,10 +100,10 @@ Rails.application.routes.draw do
       post :mark_as_read
     end
   end
-  #resources :errors
-  #%w( 404 422 500 503 ).each do |code|
-  #  get code, :to => "errors#show", :code => code
-  #end
+  resources :errors
+  %w( 404 422 500 503 ).each do |code|
+    get code, :to => "errors#show", :code => code
+  end
 
   resources :notification_settings, only: [:index]
 

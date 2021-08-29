@@ -6,8 +6,7 @@ class VideosController < ApplicationController
   respond_to :js, :html
 
   def index
-    @videos = Video.all
-    respond_with(@videos)
+    redirect_back(fallback_location: root_path)
   end
 
   def show

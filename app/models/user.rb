@@ -9,7 +9,7 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   searchkick word_start: [:username]
-
+  #process_in_background :avatar
   # Two Factor Authentication
   serialize :otp_backup_codes, JSON
   attr_accessor :otp_plain_backup_codes
@@ -33,7 +33,7 @@ class User < ApplicationRecord
 
   extend FriendlyId
 
-  has_one_attached :avatar, dependent: :destroy
+  has_one_attached :avatar
   has_one :c, dependent: :destroy
 
   friendly_id :username, use: :slugged
@@ -126,15 +126,14 @@ class User < ApplicationRecord
 
 
   validates :avatar, attached: false,
-                     content_type: ['image/png', 'image/jpg', 'image/jpeg', 'image/gif', message: 'Avatar must be a supported format' ],
-                     size: { less_than: 2.megabytes , message: 'must be under 2mb' }
+                     content_type: ['image/png', 'image/jpg', 'image/jpeg', 'image/gif', message: 'Avatar must be a #supported format' ],
+                     size: { less_than: 16.megabytes , message: 'must be under 16mb' }
 
   validates :bio, length: {maximum: 50}
   validates :email, presence: true, 'valid_email_2/email': { mx: true, disposable: true, message: 'this email is not valid!', blacklist: true }
 
 
   def optimizeavatar
-    return if self.has_attribute?(:avatar)
     return unless self.attachment_changes['avatar']
 
     path = self.attachment_changes['avatar'].attachable.tempfile.path
@@ -145,7 +144,7 @@ class User < ApplicationRecord
   end
 
 
-  before_save :scan_for_viruses, :optimizeavatar
+  #before_save :optimizeavatar
   
   protected
 
@@ -191,9 +190,4 @@ class User < ApplicationRecord
     where(["username = :value OR email = :value", {value: login}]).first
   end
 
-  private
-
-  def scan_for_viruses
-    
-  end
 end

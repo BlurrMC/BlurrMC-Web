@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   end
 
   private def payload
-    JWT.decode(get_token, Rails.application.secrets.secret_key_base, true, { algorithm: 'HS256' }).first
+    JWT.decode(get_token, ENV['SECRET_KEY'], true, { algorithm: 'HS256' }).first
   end
 
   private def get_token

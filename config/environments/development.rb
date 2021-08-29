@@ -11,8 +11,9 @@ Rails.application.configure do
   config.eager_load = false
 
   # Show full error reports.
-  config.consider_all_requests_local = false # Originally true
+  config.consider_all_requests_local = true # Originally true
   config.hosts << "www.blurrmc.com"
+  config.hosts << "blurrmc.com"
 
   # Enable/disable caching. By default caching is disabled.
   # Run rails dev:cache to toggle caching.
@@ -31,7 +32,7 @@ Rails.application.configure do
   end
 
   # Store uploaded files on the local file system (see config/storage.yml for options).
-  config.active_storage.service = :development
+  config.active_storage.service = :minio
 
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = true
@@ -62,7 +63,7 @@ Rails.application.configure do
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
-  config.action_mailer.default_url_options = { host: 'www.blurrmc.com' }
+  config.action_mailer.default_url_options = { host: 'blurrmc.com' }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     user_name:      ENV["EMAIL_USERNAME"],
@@ -74,4 +75,4 @@ Rails.application.configure do
     enable_starttls_auto: true
   }
 end
-Rails.application.routes.default_url_options[:host] = 'www.blurrmc.com'
+Rails.application.routes.default_url_options[:host] = 'blurrmc.com'

@@ -24,7 +24,7 @@ body {
 <body>
 
 <center><img src="https://www.blurrmc.com/images/Blurr_Logo.png" alt="Blurr Logo" class="logopic">
-<h3>Hello<%= @email %></h3>
+<h3>Hello, <%= @email %></h3>
 <div>
   <% if @resource.try(:unconfirmed_email?) %>
     <h4>We're here to notify you that your email is being changed to <%= @resource.unconfirmed_email %>.</h4>
