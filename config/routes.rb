@@ -29,6 +29,7 @@ Rails.application.routes.draw do
   get '/privacy_policy', to: 'terms#privacypolicy'
   get '/terms_of_service', to: 'terms#termsofservice'
   get '/contact', to: 'terms#contact'
+  get '/eula', to: 'terms#eula'
   get '/@:id', to: 'cs#show'
   namespace :api do
     namespace :v1 do

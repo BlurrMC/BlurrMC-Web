@@ -12,4 +12,8 @@ class TermsController < ApplicationController
     def contact
         render :contact
     end
+
+    def eula
+        render :eula
+    end
 end
