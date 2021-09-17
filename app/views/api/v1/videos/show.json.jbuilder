@@ -10,7 +10,9 @@ json.previousvideoid @video.prev.id if @video.prev
 if user_signed_in?
     if !Report.exists?(reportable_id: @video, actor_id: current_user, reportable_type: "Video") && @user != current_user
         json.reported false
-    else
+    elsif @user == current_user
+        json.reported false
+    else @user == current_user
         json.reported true
     end
     if @video.user == current_user

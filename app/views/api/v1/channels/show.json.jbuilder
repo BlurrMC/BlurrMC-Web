@@ -11,6 +11,8 @@ if user_signed_in?
     end
     if !Report.exists?(reportable_id: @user, actor_id: current_user, reportable_type: "User") && @user != current_user
         json.reported false
+    elsif @user == current_user
+        json.reported false
     else
         json.reported true
     end

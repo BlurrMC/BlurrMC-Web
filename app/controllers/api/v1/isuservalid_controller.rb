@@ -7,8 +7,10 @@ class API::V1::IsuservalidController < ApplicationController
         if @user == current_user 
             render json: { status: 'User is valid! YAY :)' }, status: :ok
         else
-            render json: { error: 'User is not valid. Oh no!' }, status: :unauthorized
+            render json: { status: 'User is not valid. Oh no!' }, status: :unauthorized
         end
+        # If you want to make it so it shows that blurrmc servers are offline just put this line of code:
+        # render json: { status: 'Servers are currently offline, how unlucky' }
     end
 end
   
